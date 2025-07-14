@@ -72,6 +72,58 @@
       text-decoration: underline;
     }
 
+    .comment-section {
+      margin-top: 3rem;
+      text-align: left;
+    }
+
+    .comment-section h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #2c3e50;
+    }
+
+    .comment-section form {
+      margin-bottom: 1.5rem;
+    }
+
+    .comment-section input,
+    .comment-section textarea {
+      width: 100%;
+      padding: 0.6rem;
+      margin: 0.3rem 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .comment-section button {
+      background: #3498db;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .comment-section button:hover {
+      background: #217dbb;
+    }
+
+    .comment {
+      background: #f1f1f1;
+      padding: 0.7rem 1rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .comment strong {
+      display: block;
+      color: #222;
+      margin-bottom: 0.2rem;
+    }
+
     footer {
       text-align: center;
       padding: 1rem;
@@ -92,18 +144,63 @@
     <p class="price">Amount: ₹599</p>
 
     <img src="assets/qr-code.jpg" alt="Scan this QR to Pay" class="qr-img" />
-
     <p class="upi">UPI ID: <span>yourname@upi</span></p>
 
     <p class="note">
       After payment, send a screenshot to us on 
       <a href="https://wa.me/91XXXXXXXXXX" target="_blank">WhatsApp</a> to receive your project download link instantly.
     </p>
+
+    <!-- ⭐ Comment Section Starts Here -->
+    <div class="comment-section">
+      <h3>💬 Student Reviews</h3>
+      <form id="commentForm">
+        <input type="text" id="name" placeholder="Your Name" required />
+        <textarea id="message" placeholder="Write your review..." rows="3" required></textarea>
+        <button type="submit">Post Review</button>
+      </form>
+
+      <div id="commentsContainer"></div>
+    </div>
   </main>
 
   <footer>
     © 2025 ProjectStore.in | All rights reserved
   </footer>
+
+  <!-- 💡 JS for handling comments -->
+  <script>
+    const form = document.getElementById('commentForm');
+    const container = document.getElementById('commentsContainer');
+
+    function loadComments() {
+      const comments = JSON.parse(localStorage.getItem('project_comments')) || [];
+      container.innerHTML = comments.map(c => `
+        <div class="comment">
+          <strong>${c.name}</strong>
+          <p>${c.message}</p>
+        </div>
+      `).join('');
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !message) return;
+
+      const newComment = { name, message };
+      const existing = JSON.parse(localStorage.getItem('project_comments')) || [];
+      existing.unshift(newComment);
+      localStorage.setItem('project_comments', JSON.stringify(existing));
+
+      form.reset();
+      loadComments();
+    });
+
+    window.onload = loadComments;
+  </script>
 
 </body>
 </html>
