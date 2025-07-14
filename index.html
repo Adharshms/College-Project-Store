@@ -1,13 +1,243 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>College Projects Store</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-color: #f8fafc;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header.site-header {
+      background-color: #ffffff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #4f46e5;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-weight: 600;
+      color: #4b5563;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #6366f1;
+    }
+
+    .hero {
+      background: linear-gradient(to right, #6366f1, #8b5cf6);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+    }
+
+    main.project-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .project-card {
+      background: #fff;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: scale(1.03);
+    }
+
+    .project-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: red;
+      color: white;
+      font-size: 0.75rem;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .project-card.sold-out img {
+      opacity: 0.6;
+    }
+
+    .price {
+      color: #16a34a;
+      font-weight: 600;
+      margin: 8px 0;
+    }
+
+    .view-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background: #6366f1;
+      color: white;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .view-btn:hover {
+      background: #4f46e5;
+    }
+
+    .view-btn.disabled {
+      background-color: #cbd5e1;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .premium-section {
+      background: linear-gradient(to right, #f0f4ff, #ffffff);
+      padding: 60px 30px;
+      text-align: center;
+      border-radius: 20px;
+      margin: 40px auto;
+      max-width: 900px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+      animation: glowSection 3s ease-in-out infinite;
+    }
+
+    .premium-section h2 {
+      font-size: 2.2rem;
+      color: #1e293b;
+      margin-bottom: 12px;
+    }
+
+    .premium-section p {
+      color: #475569;
+      font-size: 1.15rem;
+      margin-bottom: 25px;
+    }
+
+    .premium-btn {
+      display: inline-block;
+      background: linear-gradient(to right, #8b5cf6, #6366f1);
+      color: white;
+      padding: 14px 30px;
+      font-size: 1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 0 10px #8b5cf6;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .premium-btn:hover {
+      box-shadow: 0 0 25px #6366f1;
+      transform: scale(1.05);
+    }
+
+    .note {
+      font-size: 0.95rem;
+      color: #666;
+      margin-top: 20px;
+    }
+
+    @keyframes glowSection {
+      0% {
+        box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+      }
+      100% {
+        box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+      }
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+      background-color: #f1f5f9;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        justify-content: center;
+        gap: 15px;
+        margin-top: 10px;
+      }
+
+      .hero h2 {
+        font-size: 1.6rem;
+      }
+
+      .premium-section h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
   <header class="site-header">
     <h1>📚 College Project Store</h1>
     <nav>
@@ -19,29 +249,26 @@
   </header>
 
   <section class="hero">
-    <h2>🚀 Find Your mini Project in Minutes</h2>
+    <h2>🚀 Find Your Mini Project in Minutes</h2>
     <p>Top-rated, affordable, and ready-to-use academic projects for BTech, BCA, MCA, and Diploma students.</p>
   </section>
 
   <main class="project-list">
-
-    <!-- Project Cards -->
-    
-
     <div class="project-card">
-      <img src="https://market-resized.envatousercontent.com/previews/files/410220750/inline_preview.jpg?w=590&h=300&cf_fit=crop&crop=top&format=auto&q=85&s=f646580ccdb6340c0a204c3fa9dd9b682b81ebaa19a26480ce8f376010f4ad15" alt="Quiz App">
+      <img src="https://cdn.vectorstock.com/i/preview-1x/87/28/quiz-online-on-laptop-the-concept-vector-25838728.jpg" alt="Quiz App">
       <h2>Online Quiz App</h2>
       <p>Technologies: React, Firebase</p>
       <p class="price">₹599</p>
       <a href="project.html?id=2" class="view-btn">View Details</a>
     </div>
 
-    <div class="project-card">
-      <img src="https://dxavhl1p2dibq.cloudfront.net/sites/default/files/2024-10/A-guide-to-Library-Management-System-Software.webp" alt="Library System"> <span class="badge">Sold Out</span>
+    <div class="project-card sold-out">
+      <img src="https://dxavhl1p2dibq.cloudfront.net/sites/default/files/2024-10/A-guide-to-Library-Management-System-Software.webp" alt="Library System">
+      <span class="badge">Sold Out</span>
       <h2>Library Management System</h2>
       <p>Technologies: PHP, MySQL</p>
       <p class="price">₹599</p>
-      <a href="project.html?id=3" class="view-btn">View Details</a>
+      <a href="#" class="view-btn disabled">Not Available</a>
     </div>
 
     <div class="project-card">
@@ -50,135 +277,33 @@
       <p>Technologies: Flutter, Firebase</p>
       <p class="price">₹599</p>
       <a href="project.html?id=4" class="view-btn">View Details</a>
-      
     </div>
 
     <div class="project-card sold-out">
-  <div class="img-wrapper">
-    <img src="https://t3.ftcdn.net/jpg/04/06/42/82/360_F_406428249_wLvxLU9fRWonZrgZi8ljBZ2ecjii1nAo.jpg" alt="E-Commerce Website">
-    <span class="badge">Sold Out</span>
-  </div>
-  <h2>E-Commerce Website</h2>
-  <p>Technologies: MERN Stack</p>
-  <p class="price">₹599</p>
-  <a href="#" class="view-btn disabled" onclick="return false;">Not Available</a>
-</div>
-
+      <img src="https://t3.ftcdn.net/jpg/04/06/42/82/360_F_406428249_wLvxLU9fRWonZrgZi8ljBZ2ecjii1nAo.jpg" alt="E-Commerce Website">
+      <span class="badge">Sold Out</span>
+      <h2>E-Commerce Website</h2>
+      <p>Technologies: MERN Stack</p>
+      <p class="price">₹599</p>
+      <a href="#" class="view-btn disabled">Not Available</a>
+    </div>
   </main>
 
-  <!-- Premium Project Request -->
- <style>
-  .premium-section {
-    background: linear-gradient(to right, #f9f9f9, #fff);
-    padding: 50px 20px;
-    text-align: center;
-    border-radius: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    font-family: 'Segoe UI', sans-serif;
-  }
-
-  .premium-section h2 {
-    font-size: 2.2rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-
-  .premium-section p {
-    color: #555;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-  }
-
-  .premium-btn {
-    display: inline-block;
-    background: linear-gradient(to right, #6366f1, #8b5cf6);
-    color: white;
-    padding: 14px 28px;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    border-radius: 30px;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-  }
-
-  .premium-btn:hover {
-    transform: scale(1.05);
-  }
-
-  .note {
-    font-size: 0.95rem;
-    color: #666;
-    margin-top: 15px;
-  }
-  .project-card {
-  position: relative;
-  border: 1px solid #ddd;
-  padding: 16px;
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  text-align: center;
-  overflow: hidden;
-}
-
-.project-card img {
-  width: 100%;
-  border-radius: 8px;
-}
-
-.img-wrapper {
-  position: relative;
-}
-
-.badge {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  background: red;
-  color: white;
-  font-size: 0.8rem;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-weight: bold;
-  z-index: 1;
-}
-
-.project-card.sold-out img {
-  opacity: 0.6;
-}
-
-.view-btn.disabled {
-  background-color: #ccc;
-  pointer-events: none;
-  cursor: not-allowed;
-  color: #666;
-  text-decoration: none;
-}
-
-</style>
-
-<section class="premium-section" id="custom">
-  <h2>🛠 Need a Custom Project?</h2>
-  <p>Tell us your idea and we’ll build a premium custom project just for you.</p>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLScLP-aYXik2DG0QgMjH41_psaeKeubgmYTaTHAI8Kfx4gBi7A/viewform?usp=header"
-     target="_blank"
-     class="premium-btn">🚀 Request a Custom Project</a>
-  <div class="note">
-    📧 You will get an email with the details after submission.<br />
-    💰 Starting from ₹1499 | ⏱ Delivery in 3–5 days | 🤝 Support included
-  </div>
-</section>
-
-
-  <div>
-  
-  </div>
+  <section class="premium-section" id="custom">
+    <h2>🛠 Need a Custom Project?</h2>
+    <p>Tell us your idea and we’ll build a premium custom project just for you.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScLP-aYXik2DG0QgMjH41_psaeKeubgmYTaTHAI8Kfx4gBi7A/viewform?usp=header"
+       target="_blank"
+       class="premium-btn">🚀 Request a Custom Project</a>
+    <div class="note">
+      📧 You will get an email with the details after submission.<br />
+      💰 Starting from ₹1499 | ⏱ Delivery in 3–5 days | 🤝 Support included
+    </div>
+  </section>
 
   <footer>
     <p>© 2025 ProjectStore.in | All rights reserved</p>
   </footer>
+
 </body>
 </html>
