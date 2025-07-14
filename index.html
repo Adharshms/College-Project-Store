@@ -37,7 +37,7 @@
     </div>
 
     <div class="project-card">
-      <img src="https://dxavhl1p2dibq.cloudfront.net/sites/default/files/2024-10/A-guide-to-Library-Management-System-Software.webp" alt="Library System">
+      <img src="https://dxavhl1p2dibq.cloudfront.net/sites/default/files/2024-10/A-guide-to-Library-Management-System-Software.webp" alt="Library System"> <span class="badge">Sold Out</span>
       <h2>Library Management System</h2>
       <p>Technologies: PHP, MySQL</p>
       <p class="price">₹599</p>
@@ -50,15 +50,19 @@
       <p>Technologies: Flutter, Firebase</p>
       <p class="price">₹599</p>
       <a href="project.html?id=4" class="view-btn">View Details</a>
+      
     </div>
 
-    <div class="project-card">
-      <img src="https://t3.ftcdn.net/jpg/04/06/42/82/360_F_406428249_wLvxLU9fRWonZrgZi8ljBZ2ecjii1nAo.jpg" alt="E-Commerce Website">
-      <h2>E-Commerce Website</h2>
-      <p>Technologies: MERN Stack</p>
-      <p class="price">₹599</p>
-      <a href="project.html?id=5" class="view-btn">View Details</a>
-    </div>
+    <div class="project-card sold-out">
+  <div class="img-wrapper">
+    <img src="https://t3.ftcdn.net/jpg/04/06/42/82/360_F_406428249_wLvxLU9fRWonZrgZi8ljBZ2ecjii1nAo.jpg" alt="E-Commerce Website">
+    <span class="badge">Sold Out</span>
+  </div>
+  <h2>E-Commerce Website</h2>
+  <p>Technologies: MERN Stack</p>
+  <p class="price">₹599</p>
+  <a href="#" class="view-btn disabled" onclick="return false;">Not Available</a>
+</div>
 
   </main>
 
@@ -109,6 +113,51 @@
     color: #666;
     margin-top: 15px;
   }
+  .project-card {
+  position: relative;
+  border: 1px solid #ddd;
+  padding: 16px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  text-align: center;
+  overflow: hidden;
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.img-wrapper {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: white;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.project-card.sold-out img {
+  opacity: 0.6;
+}
+
+.view-btn.disabled {
+  background-color: #ccc;
+  pointer-events: none;
+  cursor: not-allowed;
+  color: #666;
+  text-decoration: none;
+}
+
 </style>
 
 <section class="premium-section" id="custom">
